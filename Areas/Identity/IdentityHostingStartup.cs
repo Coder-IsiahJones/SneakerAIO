@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,25 +6,27 @@ using SneakerAIO.Areas.Identity.Data;
 using SneakerAIO.Data;
 
 [assembly: HostingStartup(typeof(SneakerAIO.Areas.Identity.IdentityHostingStartup))]
+
 namespace SneakerAIO.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                services.AddDbContext<SneakerDbContext>(options =>
+            builder.ConfigureServices((context, services) =>
+            {
+                services.AddDbContext<AuthDbContext>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("SneakerDbContextConnection")));
+                        context.Configuration.GetConnectionString("AuthDbContextConnection")));
 
                 services.AddDefaultIdentity<ApplicationUser>(options =>
                 {
-                    options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
+                    options.SignIn.RequireConfirmedAccount = false;
                 })
 
-                    .AddEntityFrameworkStores<SneakerDbContext>();
+                   .AddEntityFrameworkStores<AuthDbContext>();
             });
         }
     }

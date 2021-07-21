@@ -1,8 +1,12 @@
 {
   "dependencies": {
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "DevConnection"
+    },
     "mssql1": {
       "type": "mssql",
-      "connectionId": "SneakerDbContextConnection"
+      "connectionId": "AuthDbContextConnection"
     }
   }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace SneakerAIO.Models
 {
     public class ErrorViewModel
