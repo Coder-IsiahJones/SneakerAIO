@@ -6,13 +6,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SneakerAIO.Areas.Identity.Data;
-using SneakerAIO.Controllers;
 
 namespace SneakerAIO.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class SneakerDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public SneakerDbContext(DbContextOptions<SneakerDbContext> options)
             : base(options)
         {
         }

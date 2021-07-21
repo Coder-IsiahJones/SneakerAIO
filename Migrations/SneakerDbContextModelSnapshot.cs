@@ -8,7 +8,7 @@ using SneakerAIO.Data;
 
 namespace SneakerAIO.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SneakerDbContext))]
     partial class SneakerDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

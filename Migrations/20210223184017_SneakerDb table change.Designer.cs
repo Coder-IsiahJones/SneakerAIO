@@ -9,7 +9,7 @@ using SneakerAIO.Data;
 
 namespace SneakerAIO.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SneakerDbContext))]
     [Migration("20210223184017_SneakerDb table change")]
     partial class SneakerDbtablechange
     {
