@@ -1,13 +1,30 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SneakerAIO.Models;
+using System.Threading.Tasks;
 
 namespace SneakerAIO
 {
     public class Program
     {
-        public static void Main(string[] args)
+        //public static void Main(string[] args)
+        //{
+        //    CreateHostBuilder(args).Build().Run();
+        //}
+
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            var dbContext = host.Services
+                                .CreateScope().ServiceProvider
+                                .GetRequiredService<ApplicationDbContext>();
+
+            await dbContext.Database.MigrateAsync();
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
