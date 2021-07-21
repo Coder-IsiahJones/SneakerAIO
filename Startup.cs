@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SneakerAIO.Data;
 using SneakerAIO.Models;
 
 namespace SneakerAIO
@@ -22,8 +23,12 @@ namespace SneakerAIO
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+
+            services.AddDbContext<Models.ApplicationDbContext>(options => options.UseNpgsql(DataUtility.GetConnectionString(Configuration)));
+            services.AddDbContext<Models.ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
